@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles/index.css'
-import PersonalInfo from './components/PersonalInfo'
+import App from './components/App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <PersonalInfo key='personalInfoPage' />
+    <App />
   </StrictMode>
 )

@@ -3,14 +3,14 @@ import {useState} from 'react';
 // Component for personal detail input field
 function UserInput({id, labelText, ...rest}) {
   return (
-    <>
+    <div className='flex flex-col'>
       <label htmlFor={id} className="text-gray-700">{labelText}</label>
       <input 
         id={id} 
         className='border-solid border-1 rounded-md h-[2.2rem]'
         {...rest}
       />
-    </>
+    </div>
   )
 }
 
@@ -25,12 +25,12 @@ export default function PersonalInfo() {
   }
 
   return (
-    <div className="m-[1rem] font-[system-ui]">
-      <h1 className="font-mono text-3xl font-bold">Personal details</h1>
+    <div className="m-[1rem]">
+      <h1 className="text-3xl font-bold">Personal details</h1>
       <p className="text-1xl font-normal text-gray-700">
         Personal details such as - name, job title and email are crucial for any employers resume.
       </p>
-      <form className="flex flex-col">
+      <form className="flex flex-col gap-[1.4rem]">
         <UserInput
           id='name'
           labelText='First name'
