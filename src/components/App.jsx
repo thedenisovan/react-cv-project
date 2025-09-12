@@ -23,21 +23,26 @@ export default function App() {
   }
 
   return (
-    <Container>
-      {returnCorrectPage()}
-      <div className="flex justify-around">
-        <button 
-          disabled={index < 1}
-          className='bg-gray-500 text-amber-50 rounded-xl w-[5rem]'
-          onClick={previousPage}>Previous
-        </button>
-        <button 
-          disabled={index > 3}
-          className='bg-gray-500 text-amber-50 rounded-xl w-[5rem]'
-          onClick={nextPage}>Next
-        </button>
+    <div className="flex md:flex-col lg:flex-row">
+      <div>
+        {returnCorrectPage()}
+        <div className="flex justify-around">
+          <button
+            disabled={index < 1}
+            className='bg-gray-500 text-amber-50 rounded-xl w-[5rem] disabled:bg-amber-500'
+            onClick={previousPage}>Previous
+          </button>
+          <button
+            disabled={index > 0}
+            className='bg-gray-500 text-amber-50 rounded-xl w-[5rem] disabled:bg-amber-500'
+            onClick={nextPage}>Next
+          </button>
+        </div>
       </div>
-    </Container>
+      <section className="hidden md:block">
+        Hello mama
+      </section>
+    </div>
   )
 }
 

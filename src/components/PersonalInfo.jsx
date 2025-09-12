@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import Container from "./SectionContainer"
 
 // Component for personal detail input field
 function UserInput({id, labelText, ...rest}) {
@@ -25,7 +26,7 @@ export default function PersonalInfo() {
   }
 
   return (
-    <div>
+    <Container>
       <h1 className="text-3xl font-bold">Personal details</h1>
       <p className="text-1xl font-normal text-gray-700">
         Personal details such as - name, job title and email are crucial for any employers resume.
@@ -55,6 +56,6 @@ export default function PersonalInfo() {
           onChange={handleChange}
         />
       </form>
-    </div>
+    </Container>
   )
 }
