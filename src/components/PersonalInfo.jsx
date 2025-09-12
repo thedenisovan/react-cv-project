@@ -25,12 +25,12 @@ export default function PersonalInfo() {
   }
 
   return (
-    <div className="m-[1rem]">
+    <div>
       <h1 className="text-3xl font-bold">Personal details</h1>
       <p className="text-1xl font-normal text-gray-700">
         Personal details such as - name, job title and email are crucial for any employers resume.
       </p>
-      <form className="flex flex-col gap-[1.4rem]">
+      <form className="flex flex-col gap-[1rem]">
         <UserInput
           id='name'
           labelText='First name'
