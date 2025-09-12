@@ -2,6 +2,7 @@ import { useState } from "react";
 import '../styles/index.css'
 import PersonalInfo from './PersonalInfo.jsx'
 import Skills from './Skills.jsx'
+import CvField from "./CvField.jsx";
 
 // Main projects component
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
       job: ''
     });
   
+  // function that is passed to children of this component to get on change input value
   function onStateChange(field, value) {
     setInput({
       ...input,
@@ -51,9 +53,9 @@ export default function App() {
           </button>
         </div>
       </div>
-      <section className="hidden md:block">
-        {input.name}
-      </section>
+      <CvField
+        name={input.name}
+      />
     </div>
   )
 }
