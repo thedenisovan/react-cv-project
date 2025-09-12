@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import Container from "./SectionContainer"
 
 // Component for personal detail input field
@@ -15,16 +14,7 @@ function UserInput({id, labelText, ...rest}) {
   )
 }
 
-export default function PersonalInfo() {
-  const [input, setInput] = useState({name: '', surname: '', email: '', job: ''});
-
-  function handleChange(event) {
-    setInput({
-      ...input,
-      [event.target.id]: event.target.value
-    });
-  }
-
+export default function PersonalInfo({onStateChange}) {
   return (
     <Container>
       <h1 className="text-3xl font-bold">Personal details</h1>
@@ -35,25 +25,23 @@ export default function PersonalInfo() {
         <UserInput
           id='name'
           labelText='First name'
-          
-          onChange={handleChange}
+          onChange={(e) => onStateChange(e.target.id, e.target.value)}
         />
         <UserInput
           id='surname'
           labelText='Last name'
-          
-          onChange={handleChange}
+          // onChange={handleChange}
         />
         <UserInput
           type='email'
           id='email'
           labelText='Email address'
-          onChange={handleChange}
+          // onChange={handleChange}
         />
         <UserInput
           id='job'
           labelText='Job title'
-          onChange={handleChange}
+          // onChange={handleChange}
         />
       </form>
     </Container>

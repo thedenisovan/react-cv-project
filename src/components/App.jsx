@@ -2,11 +2,23 @@ import { useState } from "react";
 import '../styles/index.css'
 import PersonalInfo from './PersonalInfo.jsx'
 import Skills from './Skills.jsx'
-import Container from "./SectionContainer"
 
 // Main projects component
 export default function App() {
   const [index, setIndex] = useState(0);
+  const [input, setInput] = useState({
+      name: '', 
+      surname: '', 
+      email: '', 
+      job: ''
+    });
+  
+  function onStateChange(field, value) {
+    setInput({
+      ...input,
+      [field]: value
+    });
+  }
 
   // Function to increase or decrease index
   const nextPage = () => { if (index < 1) setIndex(index + 1) }
@@ -16,9 +28,9 @@ export default function App() {
   function returnCorrectPage() {
     switch(index) {
       case 0:
-        return <PersonalInfo id='0' />;
+        return <PersonalInfo onStateChange={onStateChange} id='0' />;
       case 1:
-        return <Skills id='1' className='text-3xl font-bold' />;
+        return <Skills id='1' />;
     }
   }
 
@@ -40,7 +52,7 @@ export default function App() {
         </div>
       </div>
       <section className="hidden md:block">
-        Hello mama
+        {input.name}
       </section>
     </div>
   )
