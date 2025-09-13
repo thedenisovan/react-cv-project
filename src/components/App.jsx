@@ -75,7 +75,7 @@ export default function App() {
           </button>
         </div>
       </div>
-      <CvField />
+      <CvField index={index} />
     </div>
   );
 }
