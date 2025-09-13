@@ -38,7 +38,7 @@ export default function App() {
   }
 
   return (
-    <div className="max-w-[1200px] flex m-auto md:flex-col md:justify-center lg:flex-row">
+    <div className="max-w-[1200px] flex justify-center m-auto md:flex-col lg:flex-row">
       <div>
         {returnCorrectPage()}
         <div className="flex justify-around m-auto max-w-[400px]">
