@@ -1,5 +1,8 @@
 export default function Container({ children }) {
   return (
-    <div className="m-[1rem] font-[sans-serif]">{children}</div>
+    <div 
+      className="max-w-[500px] m-[1rem] font-[sans-serif] m-auto p-5">
+      {children}
+    </div>
   )
 }

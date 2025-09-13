@@ -30,18 +30,24 @@ export default function PersonalInfo({onStateChange}) {
         <UserInput
           id='surname'
           labelText='Last name'
-          // onChange={handleChange}
+          onChange={(e) => onStateChange(e.target.id, e.target.value)}
         />
         <UserInput
           type='email'
           id='email'
           labelText='Email address'
-          // onChange={handleChange}
+          onChange={(e) => onStateChange(e.target.id, e.target.value)}
+        />
+        <UserInput
+          type='number'
+          id='phone'
+          labelText='Phone number'
+          onChange={(e) => onStateChange(e.target.id, e.target.value)}
         />
         <UserInput
           id='job'
           labelText='Job title'
-          // onChange={handleChange}
+          onChange={(e) => onStateChange(e.target.id, e.target.value)}
         />
       </form>
     </Container>

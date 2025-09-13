@@ -11,7 +11,8 @@ export default function App() {
       name: '', 
       surname: '', 
       email: '', 
-      job: ''
+      job: '',
+      number: ''
     });
   
   // function that is passed to children of this component to get on change input value
@@ -23,31 +24,31 @@ export default function App() {
   }
 
   // Function to increase or decrease index
-  const nextPage = () => { if (index < 1) setIndex(index + 1) }
+  const nextPage = () => { if (index < 2) setIndex(index + 1) }
   const previousPage = () => { if (index > 0) setIndex(index - 1) }
 
   // Return current active page based on current index
   function returnCorrectPage() {
-    switch(index) {
-      case 0:
+    switch(true) {
+      case (index === 0):
         return <PersonalInfo onStateChange={onStateChange} id='0' />;
-      case 1:
+      case (index === 1):
         return <Skills id='1' />;
     }
   }
 
   return (
-    <div className="flex md:flex-col lg:flex-row">
+    <div className="max-w-[1200px] flex m-auto md:flex-col md:justify-center lg:flex-row">
       <div>
         {returnCorrectPage()}
-        <div className="flex justify-around">
+        <div className="flex justify-around m-auto max-w-[400px]">
           <button
             disabled={index < 1}
             className='bg-gray-500 text-amber-50 rounded-xl w-[5rem] disabled:bg-amber-500'
             onClick={previousPage}>Previous
           </button>
           <button
-            disabled={index > 0}
+            disabled={index > 1}
             className='bg-gray-500 text-amber-50 rounded-xl w-[5rem] disabled:bg-amber-500'
             onClick={nextPage}>Next
           </button>
