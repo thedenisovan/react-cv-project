@@ -6,6 +6,7 @@ import CvField from './CvField.jsx';
 
 export default function App() {
   const [index, setIndex] = useState(0);
+
   const [personal, setInput] = useState({
     name: '',
     surname: '',
@@ -13,7 +14,6 @@ export default function App() {
     job: '',
     number: '',
   });
-
   const [experience, setExperience] = useState({
     academy: '',
     degree: '',
@@ -55,8 +55,8 @@ export default function App() {
   }
 
   return (
-    <div className='max-w-[1200px] flex justify-center m-auto md:flex-col lg:flex-row'>
-      <div className='flex flex-col justify-between items-center'>
+    <div className='h-full max-w-[1200px] flex justify-center m-auto md:flex-col lg:flex-row'>
+      <div className='flex flex-col justify-center items-center'>
         {returnCorrectPage()}
         <div className='flex flex-row justify-around w-[100%]'>
           <button
@@ -75,7 +75,7 @@ export default function App() {
           </button>
         </div>
       </div>
-      <CvField name={experience.endYear} />
+      <CvField />
     </div>
   );
 }
