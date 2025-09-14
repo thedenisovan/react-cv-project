@@ -32,11 +32,14 @@ export default function CvField({
       />
       <main className='mx-10 mt-2'>
         <section>
-          <SectionTitle title='About me' />
+          <SectionTitle title='ABOUT ME' />
           <p className='text-[12px] mt-1'>
             {about ||
               'A six-time NBA champion and five-time MVP, known for my competitive drive and clutch performances. I helped popularize basketball worldwide and built a lasting global brand.'}
           </p>
+        </section>
+        <section className='mt-2'>
+          <SectionTitle title='RELEVANT SKILLS' />
         </section>
       </main>
     </div>
