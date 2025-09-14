@@ -31,12 +31,13 @@ export default function CvField({
         linkedin={linkedin}
       />
       <main className='mx-10 mt-2'>
-        <h2 className='text-xl'>About me</h2>
-        <hr />
-        <p className='text-[12px] mt-1'>
-          {about ||
-            'A six-time NBA champion and five-time MVP, known for my competitive drive and clutch performances. I helped popularize basketball worldwide and built a lasting global brand.'}
-        </p>
+        <section>
+          <SectionTitle title='About me' />
+          <p className='text-[12px] mt-1'>
+            {about ||
+              'A six-time NBA champion and five-time MVP, known for my competitive drive and clutch performances. I helped popularize basketball worldwide and built a lasting global brand.'}
+          </p>
+        </section>
       </main>
     </div>
   );
@@ -98,7 +99,8 @@ function DetailComponent({ src, alt, data, isAnchor, isGithub }) {
   function getIcon(src) {
     return svg[`../assets/${src}.svg`];
   }
-  // If isAnchor, create anchor element to store link to gh or linkedin page, instead of p el
+  // If isAnchor, create anchor element to store link to gh or linkedin page
+  // If !isAnchor, create p element for address, email or number
   return (
     <div className='flex gap-0.5 font-light'>
       <img className={`w-5`} src={getIcon(src)} alt={alt} />
@@ -115,5 +117,14 @@ function DetailComponent({ src, alt, data, isAnchor, isGithub }) {
         <p className='text-[13px] font-medium'>{data}</p>
       )}
     </div>
+  );
+}
+
+function SectionTitle({ title }) {
+  return (
+    <>
+      <h2 className='text-xl'>{title}</h2>
+      <hr />
+    </>
   );
 }
