@@ -42,9 +42,9 @@ export default function PersonalInfo({ onStateChange }) {
           }
         />
         <UserInput
-          id='location'
+          id='address'
           autoComplete='address'
-          labelText='Location'
+          labelText='Address'
           onChange={(e) =>
             onStateChange('personal', e.target.id, e.target.value)
           }
@@ -59,7 +59,7 @@ export default function PersonalInfo({ onStateChange }) {
         />
         <UserInput
           type='tel'
-          id='phone'
+          id='number'
           labelText='Phone number'
           onChange={(e) =>
             onStateChange('personal', e.target.id, e.target.value)

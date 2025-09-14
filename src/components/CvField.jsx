@@ -18,35 +18,46 @@ function DetailComponent({ src, alt, data }) {
   );
 }
 
-export default function CvField({ name, index, address }) {
+function CvHeader({ name, surname, address, email, number, github, linkedin }) {
+  return (
+    <header>
+      <h1>{name + ' ' + surname}</h1>
+      <div>
+        <DetailComponent src='location' alt='Address' data={address} />
+        <DetailComponent src='mail' alt='Email address' data={email} />
+        <DetailComponent src='phone' alt='Mobile number' data={number} />
+        <DetailComponent src='github' alt='GitHub webpage' data={github} />
+        <DetailComponent src='linkedin' alt='Linkedin page' data={linkedin} />
+      </div>
+    </header>
+  );
+}
+
+export default function CvField({
+  index,
+  name,
+  surname,
+  address,
+  email,
+  number,
+  github,
+  linkedin,
+}) {
   return (
     <section
       className={`${
         index === 2 ? 'block' : 'hidden' // If user is on small device and reaches last page display cv field
       } w-full max-w-xl aspect-[210/297] border-1 m-auto lg:block`}
     >
-      <h1>{name}</h1>
-      <div>
-        <div>
-          <DetailComponent src='location' alt='Address' data={address} />
-        </div>
-        <div>
-          <DetailComponent src='mail' alt='Email address' data={address} />
-        </div>
-        <div>
-          <DetailComponent src='phone' alt='Mobile number' data={address} />
-        </div>
-        <div>
-          <DetailComponent src='github' alt='GitHub webpage' data={address} />
-        </div>
-        <div>
-          <DetailComponent
-            src='linkedin'
-            alt='Linked in webpage'
-            data={address}
-          />
-        </div>
-      </div>
+      <CvHeader
+        name={name}
+        surname={surname}
+        address={address}
+        email={email}
+        number={number}
+        github={github}
+        linkedin={linkedin}
+      />
     </section>
   );
 }

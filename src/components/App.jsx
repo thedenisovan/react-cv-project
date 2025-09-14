@@ -11,8 +11,10 @@ export default function App() {
     name: '',
     surname: '',
     email: '',
-    location: '',
+    address: '',
     number: '',
+    linkedin: '',
+    github: '',
   });
   const [experience, setExperience] = useState({
     academy: '',
@@ -75,7 +77,16 @@ export default function App() {
           </button>
         </div>
       </div>
-      <CvField index={index} />
+      <CvField
+        index={index}
+        name={personal.name}
+        surname={personal.surname}
+        address={personal.address}
+        email={personal.email}
+        number={personal.number}
+        linkedin={personal.linkedin}
+        github={personal.github}
+      />
     </div>
   );
 }
