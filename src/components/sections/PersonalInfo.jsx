@@ -1,21 +1,5 @@
 import Container from './SectionContainer';
 
-// Component for personal detail input field
-function UserInput({ id, labelText, ...rest }) {
-  return (
-    <div className='flex flex-col'>
-      <label htmlFor={id} className='text-gray-700'>
-        {labelText}
-      </label>
-      <input
-        id={id}
-        className='border-solid border-1 rounded-md h-[2.2rem]'
-        {...rest}
-      />
-    </div>
-  );
-}
-
 export default function PersonalInfo({ onStateChange }) {
   return (
     <Container>
@@ -83,5 +67,21 @@ export default function PersonalInfo({ onStateChange }) {
         />
       </form>
     </Container>
+  );
+}
+
+// Component for personal detail input field
+function UserInput({ id, labelText, ...rest }) {
+  return (
+    <div className='flex flex-col'>
+      <label htmlFor={id} className='text-gray-700'>
+        {labelText}
+      </label>
+      <input
+        id={id}
+        className='border-solid border-1 rounded-md h-[2.2rem]'
+        {...rest}
+      />
+    </div>
   );
 }

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import '../styles/index.css';
 import PersonalInfo from './sections/PersonalInfo.jsx';
-import Career from './sections//Career.jsx';
+import Career from './sections/Career.jsx';
 import CvField from './CvField.jsx';
+import Skills from './sections/Skills.jsx';
 
 export default function App() {
   const [index, setIndex] = useState(0);
@@ -40,7 +41,7 @@ export default function App() {
 
   // Function to increase or decrease index
   const nextPage = () => {
-    if (index < 2) setIndex(index + 1);
+    if (index < 3) setIndex(index + 1);
   };
   const previousPage = () => {
     if (index > 0) setIndex(index - 1);
@@ -51,13 +52,15 @@ export default function App() {
     switch (true) {
       case index === 0:
         return <PersonalInfo onStateChange={onStateChange} id='0' />;
+      case index === 1:
+        return <Skills />;
       case index === 2:
         return <Career onStateChange={onStateChange} id='1' />;
     }
   }
 
   return (
-    <div className='h-full max-w-[1200px] flex justify-center m-auto md:flex-col lg:flex-row'>
+    <div className='h-full max-w-[1100px] flex justify-center m-auto flex-col lg:flex-row'>
       <div className='flex flex-col justify-center items-center'>
         {returnCorrectPage()}
         <div className='flex flex-row justify-around w-[100%]'>
@@ -69,7 +72,10 @@ export default function App() {
             Previous
           </button>
           <button
-            disabled={index > 1}
+            disabled={
+              (window.innerWidth > 1023 && index > 1) ||
+              (window.innerWidth < 1023 && index > 2)
+            }
             className='bg-gray-500 text-amber-50 rounded-xl w-[5rem] disabled:bg-amber-500'
             onClick={nextPage}
           >

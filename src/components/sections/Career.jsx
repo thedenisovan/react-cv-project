@@ -1,5 +1,25 @@
 import Container from './SectionContainer';
 
+export default function Career({ onStateChange }) {
+  return (
+    <Container>
+      <h1 className='text-3xl font-medium'>
+        Employee skills, education, and related experience
+      </h1>
+      <p className='text-1xl font-normal text-gray-700'>
+        Here you can provide information about your formal education, work
+        experience, and skills.
+      </p>
+      <Experience
+        title='Education'
+        label='Academy name'
+        type='degree'
+        onStateChange={onStateChange}
+      />
+    </Container>
+  );
+}
+
 // Reusable dropdown for selecting a year or "ongoing"
 function LengthOfActivity({
   yearFrom,
@@ -94,25 +114,5 @@ function Experience({ title, label, type, onStateChange }) {
         </button>
       </div>
     </form>
-  );
-}
-
-export default function Career({ onStateChange }) {
-  return (
-    <Container>
-      <h1 className='text-3xl font-medium'>
-        Employee skills, education, and related experience
-      </h1>
-      <p className='text-1xl font-normal text-gray-700'>
-        Here you can provide information about your formal education, work
-        experience, and skills.
-      </p>
-      <Experience
-        title='Education'
-        label='Academy name'
-        type='degree'
-        onStateChange={onStateChange}
-      />
-    </Container>
   );
 }

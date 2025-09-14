@@ -4,6 +4,35 @@ const svg = import.meta.glob('../assets/*.svg', {
   import: 'default',
 });
 
+export default function CvField({
+  index,
+  name,
+  surname,
+  address,
+  email,
+  number,
+  github,
+  linkedin,
+}) {
+  return (
+    <section
+      className={`${
+        index === 3 ? 'block' : 'hidden' // If user is on small device and reaches last page display cv field
+      } font-[Gill Sans] max-w-xl w-full aspect-[210/297] border-1 m-auto lg:block`}
+    >
+      <CvHeader
+        name={name}
+        surname={surname}
+        address={address}
+        email={email}
+        number={number}
+        github={github}
+        linkedin={linkedin}
+      />
+    </section>
+  );
+}
+
 // Component for user personal details
 function DetailComponent({ src, alt, data, isAnchor, isGithub }) {
   // Gets icon from svg object with given src
@@ -24,7 +53,7 @@ function DetailComponent({ src, alt, data, isAnchor, isGithub }) {
           {isGithub ? 'My GitHub page' : 'My LinkedIn page'}
         </a>
       ) : (
-        <p className='text-[13px] font-normal'>{data}</p>
+        <p className='text-[13px] font-medium'>{data}</p>
       )}
     </div>
   );
@@ -34,7 +63,7 @@ function CvHeader({ name, surname, address, email, number, github, linkedin }) {
   return (
     <header>
       <div className='h-13 p-2 bg-gray-800'>
-        <h1 className={`font-medium text-3xl text-white text-center`}>
+        <h1 className={`font-bold text-3xl text-white text-center`}>
           {name || surname ? name + ' ' + surname : 'Michael Jordan'}
         </h1>
       </div>
@@ -80,34 +109,5 @@ function CvHeader({ name, surname, address, email, number, github, linkedin }) {
         </div>
       </div>
     </header>
-  );
-}
-
-export default function CvField({
-  index,
-  name,
-  surname,
-  address,
-  email,
-  number,
-  github,
-  linkedin,
-}) {
-  return (
-    <section
-      className={`${
-        index === 2 ? 'block' : 'hidden' // If user is on small device and reaches last page display cv field
-      } font-[Gill Sans] w-full max-w-xl aspect-[210/297] border-1 m-auto lg:block`}
-    >
-      <CvHeader
-        name={name}
-        surname={surname}
-        address={address}
-        email={email}
-        number={number}
-        github={github}
-        linkedin={linkedin}
-      />
-    </section>
   );
 }
