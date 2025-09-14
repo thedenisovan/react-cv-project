@@ -20,6 +20,48 @@ export default function Career({ onStateChange }) {
   );
 }
 
+// Component for education details, job experience and related skills
+function Experience({ title, label, type, onStateChange }) {
+  return (
+    <form>
+      <h2 className='text-2xl font-medium'>{title}</h2>
+      <label htmlFor={type}>{label}</label>
+      <div>
+        <input
+          autoComplete='organization'
+          className='border-1'
+          id={type}
+          placeholder='e.g. Harvard University'
+          onChange={(e) =>
+            onStateChange('experience', e.target.id, e.target.value)
+          }
+        />
+        <LengthOfActivity
+          id='startYear'
+          placeholder='From'
+          yearFrom={1970}
+          yearTo={2025}
+          onStateChange={onStateChange}
+        />
+        <LengthOfActivity
+          id='endYear'
+          placeholder='Until'
+          yearFrom={1970}
+          yearTo={2025}
+          onStateChange={onStateChange}
+          isOngoing
+        />
+      </div>
+      <div>
+        <EducationSelect onStateChange={onStateChange} />
+        <button type='button' className='w-25 border-1'>
+          Add
+        </button>
+      </div>
+    </form>
+  );
+}
+
 // Reusable dropdown for selecting a year or "ongoing"
 function LengthOfActivity({
   yearFrom,
@@ -72,47 +114,5 @@ function EducationSelect({ onStateChange }) {
         </option>
       ))}
     </select>
-  );
-}
-
-// Component for education details, job experience and related skills
-function Experience({ title, label, type, onStateChange }) {
-  return (
-    <form className='flex flex-col'>
-      <h2 className='text-2xl font-medium'>{title}</h2>
-      <label htmlFor={type}>{label}</label>
-      <div>
-        <input
-          autoComplete='organization'
-          className='border-1'
-          id={type}
-          placeholder='e.g. Harvard University'
-          onChange={(e) =>
-            onStateChange('experience', e.target.id, e.target.value)
-          }
-        />
-        <LengthOfActivity
-          id='startYear'
-          placeholder='From'
-          yearFrom={1970}
-          yearTo={2025}
-          onStateChange={onStateChange}
-        />
-        <LengthOfActivity
-          id='endYear'
-          placeholder='Until'
-          yearFrom={1970}
-          yearTo={2025}
-          onStateChange={onStateChange}
-          isOngoing
-        />
-      </div>
-      <div>
-        <EducationSelect onStateChange={onStateChange} />
-        <button type='button' className='w-25 border-1'>
-          Add
-        </button>
-      </div>
-    </form>
   );
 }

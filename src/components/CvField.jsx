@@ -33,6 +33,56 @@ export default function CvField({
   );
 }
 
+function CvHeader({ name, surname, address, email, number, github, linkedin }) {
+  return (
+    <header>
+      <div className='h-13 p-2 bg-gray-800'>
+        <h1 className={`font-bold text-3xl text-white text-center`}>
+          {name || surname ? name + ' ' + surname : 'Michael Jordan'}
+        </h1>
+      </div>
+      <div className='mt-2 flex justify-center gap-6'>
+        <div>
+          <DetailComponent
+            src='location'
+            alt='Address'
+            data={address || 'San Francisco County, San Francisco, CA, USA'}
+          />
+          <DetailComponent
+            src='mail'
+            alt='Email address'
+            data={email || 'crazy.bull@nba.com'}
+          />
+          <DetailComponent
+            src='phone'
+            alt='Mobile number'
+            data={number || '+371 2636 51 71'}
+          />
+        </div>
+        <div>
+          <DetailComponent
+            src='github'
+            alt='GitHub webpage'
+            data={github || 'https://github.com/thedenisovan'}
+            isAnchor={true}
+            isGithub={true}
+          />
+          <DetailComponent
+            src='linkedin'
+            alt='Linkedin page'
+            data={
+              linkedin ||
+              'https://www.linkedin.com/in/dainis-dilevka-961a332b4/'
+            }
+            isAnchor={true}
+            isGithub={false}
+          />
+        </div>
+      </div>
+    </header>
+  );
+}
+
 // Component for user personal details
 function DetailComponent({ src, alt, data, isAnchor, isGithub }) {
   // Gets icon from svg object with given src
@@ -56,58 +106,5 @@ function DetailComponent({ src, alt, data, isAnchor, isGithub }) {
         <p className='text-[13px] font-medium'>{data}</p>
       )}
     </div>
-  );
-}
-
-function CvHeader({ name, surname, address, email, number, github, linkedin }) {
-  return (
-    <header>
-      <div className='h-13 p-2 bg-gray-800'>
-        <h1 className={`font-bold text-3xl text-white text-center`}>
-          {name || surname ? name + ' ' + surname : 'Michael Jordan'}
-        </h1>
-      </div>
-      <div className='mt-2 flex justify-center gap-6'>
-        <div>
-          <DetailComponent
-            src='location'
-            alt='Address'
-            data={
-              address ? address : 'San Francisco County, San Francisco, CA, USA'
-            }
-          />
-          <DetailComponent
-            src='mail'
-            alt='Email address'
-            data={email ? email : 'crazy.bull@nba.com'}
-          />
-          <DetailComponent
-            src='phone'
-            alt='Mobile number'
-            data={number ? number : '+371 2636 51 71'}
-          />
-        </div>
-        <div>
-          <DetailComponent
-            src='github'
-            alt='GitHub webpage'
-            data={github ? github : 'https://github.com/thedenisovan'}
-            isAnchor={true}
-            isGithub={true}
-          />
-          <DetailComponent
-            src='linkedin'
-            alt='Linkedin page'
-            data={
-              linkedin
-                ? linkedin
-                : 'https://www.linkedin.com/in/dainis-dilevka-961a332b4/'
-            }
-            isAnchor={true}
-            isGithub={false}
-          />
-        </div>
-      </div>
-    </header>
   );
 }

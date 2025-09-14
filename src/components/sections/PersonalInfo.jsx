@@ -10,60 +10,46 @@ export default function PersonalInfo({ onStateChange }) {
       </p>
       <form className='flex flex-col gap-[1rem]'>
         <UserInput
+          onStateChange={onStateChange}
           id='name'
           autoComplete='given-name'
           labelText='First name'
-          onChange={(e) =>
-            onStateChange('personal', e.target.id, e.target.value)
-          }
         />
         <UserInput
+          onStateChange={onStateChange}
           id='surname'
           labelText='Last name'
           autoComplete='family-name'
-          onChange={(e) =>
-            onStateChange('personal', e.target.id, e.target.value)
-          }
         />
         <UserInput
+          onStateChange={onStateChange}
           id='address'
           autoComplete='address'
           labelText='Address'
-          onChange={(e) =>
-            onStateChange('personal', e.target.id, e.target.value)
-          }
         />
         <UserInput
+          onStateChange={onStateChange}
           type='email'
           id='email'
           labelText='Email address'
-          onChange={(e) =>
-            onStateChange('personal', e.target.id, e.target.value)
-          }
         />
         <UserInput
+          onStateChange={onStateChange}
           type='tel'
           id='number'
           labelText='Phone number'
-          onChange={(e) =>
-            onStateChange('personal', e.target.id, e.target.value)
-          }
         />
         <UserInput
+          onStateChange={onStateChange}
           type='url'
           id='linkedin'
           labelText='LinkedIn'
-          onChange={(e) =>
-            onStateChange('personal', e.target.id, e.target.value)
-          }
         />
         <UserInput
+          onStateChange={onStateChange}
           type='url'
           id='github'
           labelText='GitHub'
-          onChange={(e) =>
-            onStateChange('personal', e.target.id, e.target.value)
-          }
         />
       </form>
     </Container>
@@ -71,7 +57,7 @@ export default function PersonalInfo({ onStateChange }) {
 }
 
 // Component for personal detail input field
-function UserInput({ id, labelText, ...rest }) {
+function UserInput({ id, onStateChange, labelText, ...rest }) {
   return (
     <div className='flex flex-col'>
       <label htmlFor={id} className='text-gray-700'>
@@ -81,6 +67,7 @@ function UserInput({ id, labelText, ...rest }) {
         id={id}
         className='border-solid border-1 rounded-md h-[2.2rem]'
         {...rest}
+        onChange={(e) => onStateChange('personal', e.target.id, e.target.value)}
       />
     </div>
   );

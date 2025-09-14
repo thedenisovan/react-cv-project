@@ -23,20 +23,26 @@ export default function App() {
     startYear: '',
     endYear: '',
   });
+  const [skills, setSkills] = useState({
+    about: '',
+  });
 
   // function that is passed to children of this component to get on change input value
   function onStateChange(section, field, value) {
-    if (section === 'personal') {
-      setInput({
-        ...personal,
-        [field]: value,
-      });
-    } else if (section === 'experience') {
-      setExperience({
-        ...experience,
-        [field]: value,
-      });
-    }
+    const mapping = {
+      personal: [personal, setInput],
+      experience: [experience, setExperience],
+      skills: [skills, setSkills],
+    };
+
+    const entry = mapping[section];
+    if (!entry) return;
+
+    const [state, setter] = entry;
+    setter({
+      ...state,
+      [field]: value,
+    });
   }
 
   // Function to increase or decrease index
@@ -49,14 +55,12 @@ export default function App() {
 
   // Return current active page based on current index
   function returnCorrectPage() {
-    switch (true) {
-      case index === 0:
-        return <PersonalInfo onStateChange={onStateChange} id='0' />;
-      case index === 1:
-        return <Skills />;
-      case index === 2:
-        return <Career onStateChange={onStateChange} id='1' />;
-    }
+    const pages = [
+      <PersonalInfo onStateChange={onStateChange} />,
+      <Skills onStateChange={onStateChange} />,
+      <Career onStateChange={onStateChange} />,
+    ];
+    return pages[index] || null;
   }
 
   return (
