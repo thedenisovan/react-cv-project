@@ -5,15 +5,22 @@ const svg = import.meta.glob('../assets/*.svg', {
 });
 
 // Component for user personal details
-function DetailComponent({ src, alt, data }) {
+function DetailComponent({ src, alt, data, isAnchor, isGithub }) {
   // Gets icon from svg object with given src
   function getIcon(src) {
     return svg[`../assets/${src}.svg`];
   }
+  // If isAnchor, create anchor element to store link to gh or linkedin page, instead of p el
   return (
-    <div>
+    <div className='flex'>
       <img className='w-7' src={getIcon(src)} alt={alt} />
-      <p>{data}</p>
+      {isAnchor && data !== '' ? (
+        <a href={data} target='_blank' rel='noopener noreferrer'>
+          {isGithub ? 'My GitHub page' : 'My LinkedIn page'}
+        </a>
+      ) : (
+        <p>{data}</p>
+      )}
     </div>
   );
 }
@@ -22,12 +29,28 @@ function CvHeader({ name, surname, address, email, number, github, linkedin }) {
   return (
     <header>
       <h1>{name + ' ' + surname}</h1>
-      <div>
-        <DetailComponent src='location' alt='Address' data={address} />
-        <DetailComponent src='mail' alt='Email address' data={email} />
-        <DetailComponent src='phone' alt='Mobile number' data={number} />
-        <DetailComponent src='github' alt='GitHub webpage' data={github} />
-        <DetailComponent src='linkedin' alt='Linkedin page' data={linkedin} />
+      <div className='flex'>
+        <div className='flex-[.6]'>
+          <DetailComponent src='location' alt='Address' data={address} />
+          <DetailComponent src='mail' alt='Email address' data={email} />
+          <DetailComponent src='phone' alt='Mobile number' data={number} />
+        </div>
+        <div>
+          <DetailComponent
+            src='github'
+            alt='GitHub webpage'
+            data={github}
+            isAnchor={true}
+            isGithub={true}
+          />
+          <DetailComponent
+            src='linkedin'
+            alt='Linkedin page'
+            data={linkedin}
+            isAnchor={true}
+            isGithub={false}
+          />
+        </div>
       </div>
     </header>
   );
