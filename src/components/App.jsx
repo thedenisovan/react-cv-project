@@ -96,6 +96,7 @@ export default function App() {
         number={personal.number}
         linkedin={personal.linkedin}
         github={personal.github}
+        about={skills.about}
       />
     </div>
   );

@@ -13,9 +13,10 @@ export default function CvField({
   number,
   github,
   linkedin,
+  about,
 }) {
   return (
-    <section
+    <div
       className={`${
         index === 3 ? 'block' : 'hidden' // If user is on small device and reaches last page display cv field
       } font-[Gill Sans] max-w-xl w-full aspect-[210/297] border-1 m-auto lg:block`}
@@ -29,7 +30,15 @@ export default function CvField({
         github={github}
         linkedin={linkedin}
       />
-    </section>
+      <main className='mx-10 mt-2'>
+        <h2 className='text-xl'>About me</h2>
+        <hr />
+        <p className='text-[12px] mt-1'>
+          {about ||
+            'A six-time NBA champion and five-time MVP, known for my competitive drive and clutch performances. I helped popularize basketball worldwide and built a lasting global brand.'}
+        </p>
+      </main>
+    </div>
   );
 }
 

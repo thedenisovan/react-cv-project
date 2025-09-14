@@ -13,7 +13,7 @@ export default function Skills({ onStateChange }) {
       <textarea
         className='border-1'
         id='about'
-        onChange={(e) => onStateChange('about', e.target.id, e.target.value)}
+        onChange={(e) => onStateChange('skills', e.target.id, e.target.value)}
       ></textarea>
     </Container>
   );
