@@ -12,14 +12,19 @@ function DetailComponent({ src, alt, data, isAnchor, isGithub }) {
   }
   // If isAnchor, create anchor element to store link to gh or linkedin page, instead of p el
   return (
-    <div className='flex'>
-      <img className='w-7' src={getIcon(src)} alt={alt} />
-      {isAnchor && data !== '' ? (
-        <a href={data} target='_blank' rel='noopener noreferrer'>
+    <div className='flex gap-0.5 font-light'>
+      <img className={`w-5`} src={getIcon(src)} alt={alt} />
+      {isAnchor && data ? (
+        <a
+          className='underline text-shadow-gray-900 text-[13px] font-normal'
+          href={data}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           {isGithub ? 'My GitHub page' : 'My LinkedIn page'}
         </a>
       ) : (
-        <p>{data}</p>
+        <p className='text-[13px] font-normal'>{data}</p>
       )}
     </div>
   );
@@ -28,25 +33,47 @@ function DetailComponent({ src, alt, data, isAnchor, isGithub }) {
 function CvHeader({ name, surname, address, email, number, github, linkedin }) {
   return (
     <header>
-      <h1>{name + ' ' + surname}</h1>
-      <div className='flex'>
-        <div className='flex-[.6]'>
-          <DetailComponent src='location' alt='Address' data={address} />
-          <DetailComponent src='mail' alt='Email address' data={email} />
-          <DetailComponent src='phone' alt='Mobile number' data={number} />
+      <div className='h-13 p-2 bg-gray-800'>
+        <h1 className={`font-medium text-3xl text-white text-center`}>
+          {name || surname ? name + ' ' + surname : 'Michael Jordan'}
+        </h1>
+      </div>
+      <div className='mt-2 flex justify-center gap-6'>
+        <div>
+          <DetailComponent
+            src='location'
+            alt='Address'
+            data={
+              address ? address : 'San Francisco County, San Francisco, CA, USA'
+            }
+          />
+          <DetailComponent
+            src='mail'
+            alt='Email address'
+            data={email ? email : 'crazy.bull@nba.com'}
+          />
+          <DetailComponent
+            src='phone'
+            alt='Mobile number'
+            data={number ? number : '+371 2636 51 71'}
+          />
         </div>
         <div>
           <DetailComponent
             src='github'
             alt='GitHub webpage'
-            data={github}
+            data={github ? github : 'https://github.com/thedenisovan'}
             isAnchor={true}
             isGithub={true}
           />
           <DetailComponent
             src='linkedin'
             alt='Linkedin page'
-            data={linkedin}
+            data={
+              linkedin
+                ? linkedin
+                : 'https://www.linkedin.com/in/dainis-dilevka-961a332b4/'
+            }
             isAnchor={true}
             isGithub={false}
           />
@@ -70,7 +97,7 @@ export default function CvField({
     <section
       className={`${
         index === 2 ? 'block' : 'hidden' // If user is on small device and reaches last page display cv field
-      } w-full max-w-xl aspect-[210/297] border-1 m-auto lg:block`}
+      } font-[Gill Sans] w-full max-w-xl aspect-[210/297] border-1 m-auto lg:block`}
     >
       <CvHeader
         name={name}

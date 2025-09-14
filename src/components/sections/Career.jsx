@@ -97,7 +97,7 @@ function Experience({ title, label, type, onStateChange }) {
   );
 }
 
-export default function Skills({ onStateChange }) {
+export default function Career({ onStateChange }) {
   return (
     <Container>
       <h1 className='text-3xl font-medium'>

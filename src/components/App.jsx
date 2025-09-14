@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../styles/index.css';
-import PersonalInfo from './PersonalInfo.jsx';
-import Skills from './Skills.jsx';
+import PersonalInfo from './sections/PersonalInfo.jsx';
+import Career from './sections//Career.jsx';
 import CvField from './CvField.jsx';
 
 export default function App() {
@@ -51,8 +51,8 @@ export default function App() {
     switch (true) {
       case index === 0:
         return <PersonalInfo onStateChange={onStateChange} id='0' />;
-      case index === 1:
-        return <Skills onStateChange={onStateChange} id='1' />;
+      case index === 2:
+        return <Career onStateChange={onStateChange} id='1' />;
     }
   }
 
