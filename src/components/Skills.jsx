@@ -7,6 +7,7 @@ function LengthOfActivity({
   placeholder,
   id,
   onStateChange,
+  isOngoing,
 }) {
   const years = [];
   for (let y = yearFrom; y <= yearTo; y++) years.push(y);
@@ -26,7 +27,7 @@ function LengthOfActivity({
           {year}
         </option>
       ))}
-      <option value='ongoing'>Ongoing</option>
+      {isOngoing ? <option value='ongoing'>Ongoing</option> : ''}
     </select>
   );
 }
@@ -83,6 +84,7 @@ function Experience({ title, label, type, onStateChange }) {
           yearFrom={1970}
           yearTo={2025}
           onStateChange={onStateChange}
+          isOngoing
         />
       </div>
       <div>

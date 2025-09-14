@@ -11,7 +11,7 @@ export default function App() {
     name: '',
     surname: '',
     email: '',
-    job: '',
+    location: '',
     number: '',
   });
   const [experience, setExperience] = useState({

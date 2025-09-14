@@ -42,6 +42,14 @@ export default function PersonalInfo({ onStateChange }) {
           }
         />
         <UserInput
+          id='location'
+          autoComplete='address'
+          labelText='Location'
+          onChange={(e) =>
+            onStateChange('personal', e.target.id, e.target.value)
+          }
+        />
+        <UserInput
           type='email'
           id='email'
           labelText='Email address'
@@ -50,17 +58,25 @@ export default function PersonalInfo({ onStateChange }) {
           }
         />
         <UserInput
-          id='job'
-          autoComplete='organization-title'
-          labelText='Job title'
+          type='tel'
+          id='phone'
+          labelText='Phone number'
           onChange={(e) =>
             onStateChange('personal', e.target.id, e.target.value)
           }
         />
         <UserInput
-          type='number'
-          id='phone'
-          labelText='Phone number'
+          type='url'
+          id='linkedin'
+          labelText='LinkedIn'
+          onChange={(e) =>
+            onStateChange('personal', e.target.id, e.target.value)
+          }
+        />
+        <UserInput
+          type='url'
+          id='github'
+          labelText='GitHub'
           onChange={(e) =>
             onStateChange('personal', e.target.id, e.target.value)
           }
