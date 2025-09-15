@@ -1,15 +1,7 @@
 import { useState } from 'react';
 import Container from './SectionContainer';
 
-export default function Skills({ onStateChange }) {
-  let [input, setInput] = useState('');
-  const [skill, setSkill] = useState([]);
-
-  function setSkillState() {
-    setSkill((prev) => [...prev, input]);
-    setInput('');
-  }
-
+export default function Skills({ onStateChange, addSkill, skillInput }) {
   return (
     <Container>
       <h1 className='text-4xl font-medium'>About me section</h1>
@@ -29,15 +21,13 @@ export default function Skills({ onStateChange }) {
       </label>
       <div>
         <input
+          onChange={(e) => onStateChange('skills', e.target.id, e.target.value)}
+          id='skillInput'
           type='text'
-          id='skill'
           className='border-1'
-          value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
-          }}
+          value={skillInput}
         />
-        <button onClick={() => setSkillState()} className='border-1'>
+        <button className='border-1' onClick={addSkill}>
           Add
         </button>
       </div>

@@ -25,9 +25,11 @@ export default function App() {
   });
   const [skills, setSkills] = useState({
     about: '',
+    skillInput: '',
   });
+  const [skillStorage, setStorage] = useState([]);
 
-  // function that is passed to children of this component to get on change input value
+  // Function is passed to children of this component to get on change input value
   function onStateChange(section, field, value) {
     const mapping = {
       personal: [personal, setInput],
@@ -45,7 +47,21 @@ export default function App() {
     });
   }
 
-  // Function to increase or decrease index
+  // Adds skill to array which holds all added skills
+  function addSkill() {
+    if (skills.skillInput) {
+      // Update the array that holds all skills
+      setStorage((prev) => [...prev, skills.skillInput]);
+
+      // Clear the input field
+      setSkills({
+        ...skills,
+        skillInput: '',
+      });
+    }
+  }
+
+  // Function to increase or decrease index and switch pages
   const nextPage = () => {
     if (index < 3) setIndex(index + 1);
   };
@@ -57,7 +73,11 @@ export default function App() {
   function returnCorrectPage() {
     const pages = [
       <PersonalInfo onStateChange={onStateChange} />,
-      <Skills onStateChange={onStateChange} />,
+      <Skills
+        onStateChange={onStateChange}
+        addSkill={addSkill}
+        skillInput={skills.skillInput}
+      />,
       <Career onStateChange={onStateChange} />,
     ];
     return pages[index] || null;
