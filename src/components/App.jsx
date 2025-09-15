@@ -27,7 +27,7 @@ export default function App() {
     about: '',
     skillInput: '',
   });
-  const [skillStorage, setStorage] = useState([]);
+  const [skillStorage, setStorage] = useState(['HTML', 'CSS', 'JS', 'React']);
 
   // Function is passed to children of this component to get on change input value
   function onStateChange(section, field, value) {
@@ -117,6 +117,7 @@ export default function App() {
         linkedin={personal.linkedin}
         github={personal.github}
         about={skills.about}
+        skills={skillStorage}
       />
     </div>
   );

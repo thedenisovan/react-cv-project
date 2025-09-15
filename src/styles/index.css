@@ -1,6 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-html, body, #root {
-    height: 100%;
-    margin: auto;
+html,
+body,
+#root {
+  height: 100%;
+  margin: auto;
 }

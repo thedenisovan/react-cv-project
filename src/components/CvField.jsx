@@ -14,6 +14,7 @@ export default function CvField({
   github,
   linkedin,
   about,
+  skills,
 }) {
   return (
     <div
@@ -40,6 +41,7 @@ export default function CvField({
         </section>
         <section className='mt-2'>
           <SectionTitle title='RELEVANT SKILLS' />
+          <SkillList skills={skills} />
         </section>
       </main>
     </div>
@@ -129,5 +131,17 @@ function SectionTitle({ title }) {
       <h2 className='text-xl'>{title}</h2>
       <hr />
     </>
+  );
+}
+
+function SkillList({ skills }) {
+  return (
+    <ul className='list-disc ml-3 mt-0 text-[12px]'>
+      {skills.map((skill) => (
+        <li key={skill}>
+          <span className='relative -left-2'>{skill}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
