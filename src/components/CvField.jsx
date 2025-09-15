@@ -43,6 +43,9 @@ export default function CvField({
           <SectionTitle title='RELEVANT SKILLS' />
           <SkillList skills={skills} />
         </section>
+        <section className='mt-2'>
+          <SectionTitle title='EDUCATION & CERTIFICATION' />
+        </section>
       </main>
     </div>
   );

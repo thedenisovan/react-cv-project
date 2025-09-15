@@ -7,7 +7,7 @@ export default function Skills({
   skills,
   deleteSkill,
 }) {
-  // Creates list of skills on display
+  // Creates skill list comp on form side of screen so user can delete skill
   function SkillList({ skills }) {
     return (
       <ul className='mt-1'>

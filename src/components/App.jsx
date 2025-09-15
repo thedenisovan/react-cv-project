@@ -17,17 +17,16 @@ export default function App() {
     linkedin: '',
     github: '',
   });
+
   const [experience, setExperience] = useState({
+    id: self.crypto.randomUUID(),
     academy: '',
     degree: '',
+    field: '',
     startYear: '',
     endYear: '',
   });
-  const [skills, setSkills] = useState({
-    about: '',
-    skillInput: '',
-  });
-  const [skillStorage, setStorage] = useState(['HTML', 'CSS', 'JS', 'React']);
+  const [education, setEducation] = useState([]);
 
   // Sets state value on input change
   function onStateChange(section, field, value) {
@@ -47,10 +46,44 @@ export default function App() {
     });
   }
 
+  // Adds education to array
+  function storeEducation() {
+    if (
+      !experience.academy ||
+      !experience.degree ||
+      !experience.field ||
+      !experience.startYear ||
+      !experience.endYear
+    ) {
+      return;
+    }
+    const educationCopy = education.find((entry) => entry.id === experience.id);
+    if (educationCopy) return;
+
+    //Copies array of educations and adds new one to the end
+    setEducation((prev) => [...prev, experience]);
+    setExperience({
+      ...experience,
+      id: self.crypto.randomUUID(),
+    });
+    console.log(education);
+  }
+
+  const [skills, setSkills] = useState({
+    about: '',
+    skillInput: '',
+  });
+  const [skillStorage, setStorage] = useState([
+    'Dunking',
+    'Basketball',
+    'Baseball',
+    'Shoes',
+  ]);
+
   // Adds skill to array
   function addSkill() {
     // If skill input is not empty
-    if (skills.skillInput) {
+    if (skills.skillInput && skillStorage.length < 10) {
       // Check if skill all ready does not exist
       const skillCopy = skillStorage.find(
         (skill) => skill === skills.skillInput
@@ -92,7 +125,12 @@ export default function App() {
         skills={skillStorage}
         deleteSkill={deleteSkill}
       />,
-      <Career onStateChange={onStateChange} />,
+      <Career
+        onStateChange={onStateChange}
+        storeEducation={storeEducation}
+        academy={experience.academy}
+        education={education}
+      />,
     ];
     return pages[index] || null;
   }

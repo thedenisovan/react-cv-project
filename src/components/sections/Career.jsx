@@ -1,6 +1,12 @@
 import Container from './SectionContainer';
 
-export default function Career({ onStateChange }) {
+export default function Career({
+  onStateChange,
+  storeEducation,
+  resetExperience,
+  academy,
+  education,
+}) {
   return (
     <Container>
       <h1 className='text-3xl font-medium'>
@@ -15,13 +21,28 @@ export default function Career({ onStateChange }) {
         label='Academy name'
         type='degree'
         onStateChange={onStateChange}
+        storeEducation={storeEducation}
+        resetExperience={resetExperience}
+        academy={academy}
       />
+      <ul>
+        {education.map((instance) => (
+          <li key={instance.id}>{instance.academy}</li>
+        ))}
+      </ul>
     </Container>
   );
 }
 
 // Component for education details, job experience and related skills
-function Experience({ title, label, type, onStateChange }) {
+function Experience({
+  title,
+  label,
+  type,
+  onStateChange,
+  storeEducation,
+  academy,
+}) {
   return (
     <form>
       <h2 className='text-2xl font-medium'>{title}</h2>
@@ -30,8 +51,9 @@ function Experience({ title, label, type, onStateChange }) {
         <input
           autoComplete='organization'
           className='border-1'
-          id={type}
+          id='academy'
           placeholder='e.g. Harvard University'
+          value={academy}
           onChange={(e) =>
             onStateChange('experience', e.target.id, e.target.value)
           }
@@ -54,7 +76,11 @@ function Experience({ title, label, type, onStateChange }) {
       </div>
       <div>
         <EducationSelect onStateChange={onStateChange} />
-        <button type='button' className='w-25 border-1'>
+        <button
+          type='button'
+          className='w-25 border-1'
+          onClick={storeEducation}
+        >
           Add
         </button>
       </div>
@@ -96,23 +122,72 @@ function LengthOfActivity({
 
 // Dropdown for selecting type of education
 function EducationSelect({ onStateChange }) {
-  const EDUCATION_TYPES = ['High School', 'Bachelor', 'Master', 'PhD'];
+  const EDUCATION_TYPES = [
+    'High School',
+    'Bachelor',
+    'Master',
+    'PhD',
+    'Certification',
+  ];
+  const FIELDS_OF_STUDY = [
+    'Computer Science',
+    'Web Development',
+    'Frontend Development',
+    'Backend Development',
+    'Data Science',
+    'AI / Machine Learning',
+    'Information Technology',
+    'Software Engineering',
+    'Business Administration',
+    'Economics',
+    'Biology',
+    'Chemistry',
+    'Physics',
+    'Mathematics',
+    'High School Diploma - Science',
+    'High School Diploma - Arts',
+    'High School Diploma - General',
+    'Certification - Cloud Computing',
+    'Certification - Cybersecurity',
+    'Certification - UX/UI Design',
+  ];
 
   return (
-    <select
-      className='border-1'
-      id='degree'
-      defaultValue=''
-      onChange={(e) => onStateChange('experience', e.target.id, e.target.value)}
-    >
-      <option value='' disabled>
-        Select degree
-      </option>
-      {EDUCATION_TYPES.map((type) => (
-        <option key={type} value={type}>
-          {type}
+    <div>
+      <select
+        className='border-1'
+        id='degree'
+        defaultValue=''
+        onChange={(e) =>
+          onStateChange('experience', e.target.id, e.target.value)
+        }
+      >
+        <option value='' disabled>
+          Select degree
         </option>
-      ))}
-    </select>
+        {EDUCATION_TYPES.map((type) => (
+          <option key={type} value={type}>
+            {type}
+          </option>
+        ))}
+      </select>
+      <select
+        className='border-1'
+        id='field'
+        defaultValue=''
+        onChange={(e) =>
+          onStateChange('experience', e.target.id, e.target.value)
+        }
+      >
+        <option value='' disabled>
+          Select Field
+        </option>
+        {FIELDS_OF_STUDY.map((type) => (
+          <option key={type} value={type}>
+            {type}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
