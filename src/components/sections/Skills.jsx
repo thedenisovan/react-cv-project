@@ -1,7 +1,31 @@
-import { useState } from 'react';
 import Container from './SectionContainer';
 
-export default function Skills({ onStateChange, addSkill, skillInput }) {
+export default function Skills({
+  onStateChange,
+  addSkill,
+  skillInput,
+  skills,
+  deleteSkill,
+}) {
+  // Creates list of skills on display
+  function SkillList({ skills }) {
+    return (
+      <ul className='mt-1'>
+        {skills.map((skill) => (
+          <li key={skill}>
+            {skill}
+            <button
+              className='ml-2 border-1'
+              onClick={() => deleteSkill(skill)}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   return (
     <Container>
       <h1 className='text-4xl font-medium'>About me section</h1>
@@ -31,6 +55,7 @@ export default function Skills({ onStateChange, addSkill, skillInput }) {
           Add
         </button>
       </div>
+      <SkillList skills={skills} />
     </Container>
   );
 }

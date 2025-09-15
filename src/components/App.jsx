@@ -29,7 +29,7 @@ export default function App() {
   });
   const [skillStorage, setStorage] = useState(['HTML', 'CSS', 'JS', 'React']);
 
-  // Function is passed to children of this component to get on change input value
+  // Sets state value on input change
   function onStateChange(section, field, value) {
     const mapping = {
       personal: [personal, setInput],
@@ -47,9 +47,16 @@ export default function App() {
     });
   }
 
-  // Adds skill to array which holds all added skills
+  // Adds skill to array
   function addSkill() {
+    // If skill input is not empty
     if (skills.skillInput) {
+      // Check if skill all ready does not exist
+      const skillCopy = skillStorage.find(
+        (skill) => skill === skills.skillInput
+      );
+      if (skillCopy) return; // If skill exists return
+
       // Update the array that holds all skills
       setStorage((prev) => [...prev, skills.skillInput]);
 
@@ -59,6 +66,11 @@ export default function App() {
         skillInput: '',
       });
     }
+  }
+  // Deletes skill from list
+  function deleteSkill(key) {
+    const newStorage = skillStorage.filter((value) => value !== key);
+    setStorage(newStorage);
   }
 
   // Function to increase or decrease index and switch pages
@@ -77,6 +89,8 @@ export default function App() {
         onStateChange={onStateChange}
         addSkill={addSkill}
         skillInput={skills.skillInput}
+        skills={skillStorage}
+        deleteSkill={deleteSkill}
       />,
       <Career onStateChange={onStateChange} />,
     ];

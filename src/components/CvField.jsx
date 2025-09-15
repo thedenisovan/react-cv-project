@@ -134,6 +134,7 @@ function SectionTitle({ title }) {
   );
 }
 
+// Creates lis of skills in cv field
 function SkillList({ skills }) {
   return (
     <ul className='list-disc ml-3 mt-0 text-[12px]'>
