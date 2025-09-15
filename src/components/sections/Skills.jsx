@@ -51,7 +51,12 @@ export default function Skills({
           className='border-1'
           value={skillInput}
         />
-        <button className='border-1' onClick={addSkill}>
+        <button
+          className='border-1'
+          onClick={() => {
+            addSkill();
+          }}
+        >
           Add
         </button>
       </div>

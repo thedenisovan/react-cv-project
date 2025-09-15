@@ -15,6 +15,7 @@ export default function CvField({
   linkedin,
   about,
   skills,
+  education,
 }) {
   return (
     <div
@@ -45,6 +46,23 @@ export default function CvField({
         </section>
         <section className='mt-2'>
           <SectionTitle title='EDUCATION & CERTIFICATION' />
+
+          <ul>
+            {education.map((instance) => (
+              <li key={instance.id} className='mb-0 ml-4 list-disc'>
+                <div className='relative -left-2'>
+                  <h3 className='text-s font-semibold'>{instance.academy}</h3>
+                  <p className='text-sm text-gray-700'>
+                    <span className='font-medium'>{instance.degree}</span> (
+                    {instance.field}){' '}
+                    <span className='font-bold'>
+                      {instance.startYear} – {instance.endYear}
+                    </span>
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </section>
       </main>
     </div>

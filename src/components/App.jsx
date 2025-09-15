@@ -57,6 +57,7 @@ export default function App() {
     ) {
       return;
     }
+    // If education with same exists exit
     const educationCopy = education.find((entry) => entry.id === experience.id);
     if (educationCopy) return;
 
@@ -65,6 +66,7 @@ export default function App() {
     setExperience({
       ...experience,
       id: self.crypto.randomUUID(),
+      academy: '',
     });
   }
 
@@ -176,6 +178,7 @@ export default function App() {
         github={personal.github}
         about={skills.about}
         skills={skillStorage}
+        education={education}
       />
     </div>
   );
