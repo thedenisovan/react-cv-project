@@ -66,7 +66,12 @@ export default function App() {
       ...experience,
       id: self.crypto.randomUUID(),
     });
-    console.log(education);
+  }
+
+  // Removes education with given key
+  function deleteEducation(key) {
+    const newList = education.filter((instance) => instance.id !== key);
+    setEducation(newList);
   }
 
   const [skills, setSkills] = useState({
@@ -130,6 +135,7 @@ export default function App() {
         storeEducation={storeEducation}
         academy={experience.academy}
         education={education}
+        deleteEducation={deleteEducation}
       />,
     ];
     return pages[index] || null;

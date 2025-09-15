@@ -6,6 +6,7 @@ export default function Career({
   resetExperience,
   academy,
   education,
+  deleteEducation,
 }) {
   return (
     <Container>
@@ -27,7 +28,15 @@ export default function Career({
       />
       <ul>
         {education.map((instance) => (
-          <li key={instance.id}>{instance.academy}</li>
+          <li key={instance.id}>
+            {instance.academy}
+            <button
+              className='border-1'
+              onClick={() => deleteEducation(instance.id)}
+            >
+              Delete
+            </button>
+          </li>
         ))}
       </ul>
     </Container>
