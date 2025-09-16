@@ -6,9 +6,10 @@ export default function Career({
   resetExperience,
   academy,
   education,
-  deleteEducation,
+  deleteEntry,
   company,
   storeCareer,
+  storedCareer,
 }) {
   return (
     <Container>
@@ -36,7 +37,7 @@ export default function Career({
             {instance.academy}
             <button
               className='border-1'
-              onClick={() => deleteEducation(instance.id)}
+              onClick={() => deleteEntry('education', instance.id)}
             >
               Delete
             </button>
@@ -54,6 +55,19 @@ export default function Career({
         isEducation={false}
         storeCareer={storeCareer}
       />
+      <ul>
+        {storedCareer.map((instance) => (
+          <li key={instance.id}>
+            {instance.company}
+            <button
+              className='border-1'
+              onClick={() => deleteEntry('storedCareer', instance.id)}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
     </Container>
   );
 }
@@ -104,7 +118,7 @@ function Experience({
       </div>
       <div>
         {
-          /* If isEducation display education related select select comp*/
+          /* If isEducation display education related select comp*/
           isEducation ? (
             <EducationSelect onStateChange={onStateChange} />
           ) : (

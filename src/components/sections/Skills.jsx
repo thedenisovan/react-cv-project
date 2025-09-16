@@ -5,7 +5,7 @@ export default function Skills({
   addSkill,
   skillInput,
   skills,
-  deleteSkill,
+  deleteEntry,
 }) {
   // Creates skill list comp on form side of screen so user can delete skill
   function SkillList({ skills }) {
@@ -16,7 +16,7 @@ export default function Skills({
             {skill}
             <button
               className='ml-2 border-1'
-              onClick={() => deleteSkill(skill)}
+              onClick={() => deleteEntry('skills', skill, true)}
             >
               Delete
             </button>

@@ -18,6 +18,17 @@ export default function App() {
     github: '',
   });
 
+  const [skills, setSkills] = useState({
+    about: '',
+    skillInput: '',
+  });
+  const [skillStorage, setStorage] = useState([
+    'Dunking',
+    'Basketball',
+    'Baseball',
+    'Shoes',
+  ]);
+
   const [experience, setExperience] = useState({
     id: self.crypto.randomUUID(),
     academy: '',
@@ -93,6 +104,24 @@ export default function App() {
     });
   }
 
+  // Delete entry either from education list or career list
+  function deleteEntry(entry, key, isSkill) {
+    const mapping = {
+      education: [education, setEducation],
+      skills: [skillStorage, setStorage],
+      storedCareer: [storedCareer, setCareerStore],
+    };
+
+    const current = mapping[entry];
+    const [state, setter] = current;
+
+    // let current = isEducation ? education : storedCareer;
+    const newList = state.filter(
+      (entry) => (isSkill ? entry : entry.id) !== key
+    );
+    setter(newList);
+  }
+
   // Adds education to array
   function storeEducation() {
     if (
@@ -117,23 +146,6 @@ export default function App() {
     });
   }
 
-  // Removes education with given key
-  function deleteEducation(key) {
-    const newList = education.filter((instance) => instance.id !== key);
-    setEducation(newList);
-  }
-
-  const [skills, setSkills] = useState({
-    about: '',
-    skillInput: '',
-  });
-  const [skillStorage, setStorage] = useState([
-    'Dunking',
-    'Basketball',
-    'Baseball',
-    'Shoes',
-  ]);
-
   // Adds skill to array
   function addSkill() {
     // If skill input is not empty
@@ -153,11 +165,6 @@ export default function App() {
         skillInput: '',
       });
     }
-  }
-  // Deletes skill from list
-  function deleteSkill(key) {
-    const newStorage = skillStorage.filter((value) => value !== key);
-    setStorage(newStorage);
   }
 
   // Sets state value on input change
@@ -196,7 +203,7 @@ export default function App() {
         addSkill={addSkill}
         skillInput={skills.skillInput}
         skills={skillStorage}
-        deleteSkill={deleteSkill}
+        deleteEntry={deleteEntry}
       />,
       <Career
         onStateChange={onStateChange}
@@ -204,8 +211,9 @@ export default function App() {
         academy={experience.academy}
         company={career.company}
         education={education}
-        deleteEducation={deleteEducation}
+        deleteEntry={deleteEntry}
         storeCareer={storeCareer}
+        storedCareer={storedCareer}
       />,
     ];
     return pages[index] || null;
