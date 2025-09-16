@@ -7,6 +7,7 @@ export default function Career({
   academy,
   education,
   deleteEducation,
+  company,
 }) {
   return (
     <Container>
@@ -20,7 +21,8 @@ export default function Career({
       <Experience
         title='Education'
         label='Academy name'
-        type='degree'
+        type='degrees'
+        field='experience'
         onStateChange={onStateChange}
         storeEducation={storeEducation}
         resetExperience={resetExperience}
@@ -39,6 +41,17 @@ export default function Career({
           </li>
         ))}
       </ul>
+      <Experience
+        title='Professional career'
+        label='Company'
+        type='career'
+        field='career'
+        onStateChange={onStateChange}
+        storeEducation={storeEducation}
+        resetExperience={resetExperience}
+        company={company}
+        isEducation={false}
+      />
     </Container>
   );
 }
@@ -51,10 +64,12 @@ function Experience({
   onStateChange,
   storeEducation,
   academy,
+  isEducation = true,
+  field,
 }) {
   return (
     <form>
-      <h2 className='text-2xl font-medium'>{title}</h2>
+      <h2 className='text-2xl font-medium mt-2 -mb-1'>{title}</h2>
       <label htmlFor={type}>{label}</label>
       <div>
         <input
@@ -63,9 +78,7 @@ function Experience({
           id='academy'
           placeholder='e.g. Harvard University'
           value={academy}
-          onChange={(e) =>
-            onStateChange('experience', e.target.id, e.target.value)
-          }
+          onChange={(e) => onStateChange(field, e.target.id, e.target.value)}
         />
         <LengthOfActivity
           id='startYear'
@@ -73,6 +86,7 @@ function Experience({
           yearFrom={1970}
           yearTo={2025}
           onStateChange={onStateChange}
+          isEducation={isEducation}
         />
         <LengthOfActivity
           id='endYear'
@@ -80,11 +94,15 @@ function Experience({
           yearFrom={1970}
           yearTo={2025}
           onStateChange={onStateChange}
+          isEducation={isEducation}
           isOngoing
         />
       </div>
       <div>
-        <EducationSelect onStateChange={onStateChange} />
+        {
+          /* If isEducation display education related select select comp*/
+          isEducation && <EducationSelect onStateChange={onStateChange} />
+        }
         <button
           type='button'
           className='w-25 border-1'
@@ -105,6 +123,7 @@ function LengthOfActivity({
   id,
   onStateChange,
   isOngoing,
+  isEducation = true,
 }) {
   const years = [];
   for (let y = yearFrom; y <= yearTo; y++) years.push(y);
@@ -114,7 +133,13 @@ function LengthOfActivity({
       className='border-1'
       id={id}
       defaultValue=''
-      onChange={(e) => onStateChange('experience', e.target.id, e.target.value)}
+      onChange={(e) =>
+        onStateChange(
+          isEducation ? 'experience' : 'career',
+          e.target.id,
+          e.target.value
+        )
+      }
     >
       <option value='' disabled>
         {placeholder}

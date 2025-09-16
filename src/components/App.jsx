@@ -26,6 +26,15 @@ export default function App() {
     startYear: '',
     endYear: '',
   });
+
+  const [career, setCareer] = useState({
+    id: self.crypto.randomUUID(),
+    company: '',
+    role: '',
+    startYear: '',
+    endYear: '',
+  });
+
   const [education, setEducation] = useState([
     {
       id: self.crypto.randomUUID(),
@@ -51,6 +60,7 @@ export default function App() {
       personal: [personal, setInput],
       experience: [experience, setExperience],
       skills: [skills, setSkills],
+      career: [career, setCareer],
     };
 
     const entry = mapping[section];
@@ -153,6 +163,7 @@ export default function App() {
         onStateChange={onStateChange}
         storeEducation={storeEducation}
         academy={experience.academy}
+        company={career.company}
         education={education}
         deleteEducation={deleteEducation}
       />,
