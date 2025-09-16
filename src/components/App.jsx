@@ -4,6 +4,8 @@ import PersonalInfo from './sections/PersonalInfo.jsx';
 import Career from './sections/Career.jsx';
 import CvField from './CvField.jsx';
 import Skills from './sections/Skills.jsx';
+import nextSvg from '../assets/next.svg';
+import prevSvg from '../assets/back.svg';
 
 export default function App() {
   const [index, setIndex] = useState(0);
@@ -220,8 +222,12 @@ export default function App() {
   }
 
   return (
-    <div className='h-full max-w-[1100px] flex justify-center m-auto flex-col lg:flex-row'>
-      <div className='flex flex-col justify-center items-center'>
+    <div
+      className={`h-full bg-white max-w-[1100px] flex justify-center p-[2rem] ${
+        index > 2 ? 'flex-col' : 'flex-row'
+      }`}
+    >
+      <div className='flex flex-col justify-center items-center mb-[10rem]'>
         {returnCorrectPage()}
         <ButtonComponent
           index={index}
@@ -268,20 +274,13 @@ function ButtonComponent({ index, previousPage, nextPage, desktopBtn = true }) {
     >
       <button
         disabled={index < 1}
-        className='bg-gray-500 text-amber-50 rounded-xl w-[5rem] disabled:bg-amber-500'
+        className='bg-gray-400 rounded-[50px]'
         onClick={previousPage}
       >
-        Previous
+        <img className='h-15' src={prevSvg} />
       </button>
-      <button
-        disabled={
-          (window.innerWidth > 1023 && index > 1) ||
-          (window.innerWidth < 1023 && index === 3)
-        }
-        className='bg-gray-500 text-amber-50 rounded-xl w-[5rem] disabled:bg-amber-500'
-        onClick={nextPage}
-      >
-        Next
+      <button className='bg-gray-400 rounded-[50px]' onClick={nextPage}>
+        <img className='h-15' src={nextSvg} />
       </button>
     </div>
   );
