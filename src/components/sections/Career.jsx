@@ -8,11 +8,12 @@ export default function Career({
   education,
   deleteEducation,
   company,
+  storeCareer,
 }) {
   return (
     <Container>
       <h1 className='text-3xl font-medium'>
-        Employee skills, education, and related experience
+        Employee education and related experience
       </h1>
       <p className='text-1xl font-normal text-gray-700'>
         Here you can provide information about your formal education, work
@@ -20,9 +21,10 @@ export default function Career({
       </p>
       <Experience
         title='Education'
-        label='Academy name'
+        label='Academy'
         type='degrees'
         field='experience'
+        placeholder='e.g Harvard university'
         onStateChange={onStateChange}
         storeEducation={storeEducation}
         resetExperience={resetExperience}
@@ -46,11 +48,11 @@ export default function Career({
         label='Company'
         type='career'
         field='career'
+        placeholder='e.g Google'
         onStateChange={onStateChange}
-        storeEducation={storeEducation}
-        resetExperience={resetExperience}
         company={company}
         isEducation={false}
+        storeCareer={storeCareer}
       />
     </Container>
   );
@@ -66,6 +68,8 @@ function Experience({
   academy,
   isEducation = true,
   field,
+  placeholder,
+  storeCareer,
 }) {
   return (
     <form>
@@ -75,8 +79,8 @@ function Experience({
         <input
           autoComplete='organization'
           className='border-1'
-          id='academy'
-          placeholder='e.g. Harvard University'
+          id={isEducation ? 'academy' : 'company'}
+          placeholder={placeholder}
           value={academy}
           onChange={(e) => onStateChange(field, e.target.id, e.target.value)}
         />
@@ -101,12 +105,16 @@ function Experience({
       <div>
         {
           /* If isEducation display education related select select comp*/
-          isEducation && <EducationSelect onStateChange={onStateChange} />
+          isEducation ? (
+            <EducationSelect onStateChange={onStateChange} />
+          ) : (
+            <CareerInputComponent onStateChange={onStateChange} />
+          )
         }
         <button
           type='button'
           className='w-25 border-1'
-          onClick={storeEducation}
+          onClick={isEducation ? storeEducation : storeCareer}
         >
           Add
         </button>
@@ -223,5 +231,21 @@ function EducationSelect({ onStateChange }) {
         ))}
       </select>
     </div>
+  );
+}
+
+function CareerInputComponent() {
+  return (
+    <>
+      <label htmlFor='role'>
+        Short description of your role in this company
+      </label>
+      <input
+        type='text'
+        id='role'
+        className='border'
+        onChange={(e) => onStateChange('career', e.target.id, e.target.value)}
+      />
+    </>
   );
 }

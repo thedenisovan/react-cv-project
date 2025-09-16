@@ -27,14 +27,6 @@ export default function App() {
     endYear: '',
   });
 
-  const [career, setCareer] = useState({
-    id: self.crypto.randomUUID(),
-    company: '',
-    role: '',
-    startYear: '',
-    endYear: '',
-  });
-
   const [education, setEducation] = useState([
     {
       id: self.crypto.randomUUID(),
@@ -54,22 +46,43 @@ export default function App() {
     },
   ]);
 
-  // Sets state value on input change
-  function onStateChange(section, field, value) {
-    const mapping = {
-      personal: [personal, setInput],
-      experience: [experience, setExperience],
-      skills: [skills, setSkills],
-      career: [career, setCareer],
-    };
+  const [career, setCareer] = useState({
+    id: self.crypto.randomUUID(),
+    company: '',
+    role: '',
+    startYear: '',
+    endYear: '',
+  });
 
-    const entry = mapping[section];
-    if (!entry) return;
+  const [storedCareer, setCareerStore] = useState([
+    {
+      id: self.crypto.randomUUID(),
+      company: 'Chicago Bulls',
+      role: 'I led the Chicago Bulls as the main scorer and competitor, pushing my teammates and myself to win six championships. I took responsibility for delivering in crucial moments and setting the standard for excellence on the court.',
+      startYear: '2020',
+      endYear: '2024',
+    },
+  ]);
 
-    const [state, setter] = entry;
-    setter({
-      ...state,
-      [field]: value,
+  function storeCareer() {
+    if (
+      !career.company ||
+      !career.role ||
+      !career.startYear ||
+      !career.endYear
+    ) {
+      return;
+    }
+    // If career with same id exists exit
+    const careerCopy = storedCareer.find((entry) => entry.id === experience.id);
+    if (careerCopy) return;
+
+    // Copy career prev state and add new entry to the end
+    setCareerStore((prev) => [...prev, career]);
+    setCareer({
+      ...career,
+      id: self.crypto.randomUUID(),
+      company: '',
     });
   }
 
@@ -84,7 +97,7 @@ export default function App() {
     ) {
       return;
     }
-    // If education with same exists exit
+    // If education with same id exists exit
     const educationCopy = education.find((entry) => entry.id === experience.id);
     if (educationCopy) return;
 
@@ -140,6 +153,25 @@ export default function App() {
     setStorage(newStorage);
   }
 
+  // Sets state value on input change
+  function onStateChange(section, field, value) {
+    const mapping = {
+      personal: [personal, setInput],
+      experience: [experience, setExperience],
+      skills: [skills, setSkills],
+      career: [career, setCareer],
+    };
+
+    const entry = mapping[section];
+    if (!entry) return;
+
+    const [state, setter] = entry;
+    setter({
+      ...state,
+      [field]: value,
+    });
+  }
+
   // Function to increase or decrease index and switch pages
   const nextPage = () => {
     if (index < 3) setIndex(index + 1);
@@ -166,6 +198,7 @@ export default function App() {
         company={career.company}
         education={education}
         deleteEducation={deleteEducation}
+        storeCareer={storeCareer}
       />,
     ];
     return pages[index] || null;
