@@ -58,9 +58,16 @@ export default function App() {
     {
       id: self.crypto.randomUUID(),
       company: 'Chicago Bulls',
-      role: 'I led the Chicago Bulls as the main scorer and competitor, pushing my teammates and myself to win six championships. I took responsibility for delivering in crucial moments and setting the standard for excellence on the court.',
-      startYear: '2020',
-      endYear: '2024',
+      role: 'I became the face of the franchise and the NBA, leading the Bulls to six championships and five MVP awards. I set the standard with my scoring, defense, and leadership, dominating the 1990s.',
+      startYear: '1984',
+      endYear: '1998',
+    },
+    {
+      id: self.crypto.randomUUID(),
+      company: 'Washington Wizards',
+      role: 'I came out of retirement to play two seasons, serving as a mentor while still competing at a high level. I provided leadership, work ethic, and strong performances to help develop the younger players.',
+      startYear: '2001',
+      endYear: '2003',
     },
   ]);
 
@@ -240,6 +247,7 @@ export default function App() {
         about={skills.about}
         skills={skillStorage}
         education={education}
+        storedCareer={storedCareer}
       />
     </div>
   );
