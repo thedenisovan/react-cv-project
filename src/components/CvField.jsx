@@ -47,42 +47,11 @@ export default function CvField({
         </section>
         <section className='mt-2'>
           <SectionTitle title='EDUCATION & CERTIFICATION' />
-
-          <ul>
-            {education.map((instance) => (
-              <li key={instance.id} className='mb-0 ml-4 list-disc'>
-                <div className='relative -left-2'>
-                  <h3 className='text-s font-semibold'>{instance.academy}</h3>
-                  <p className='text-sm text-gray-700'>
-                    <span className='font-medium'>{instance.degree}</span> (
-                    {instance.field}){' '}
-                    <span className='font-bold'>
-                      {instance.startYear} – {instance.endYear}
-                    </span>
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <ExperienceComp type={education} />
         </section>
         <section className='mt-2'>
           <SectionTitle title='PROFESSIONAL CAREER' />
-
-          <ul>
-            {storedCareer.map((instance) => (
-              <li key={instance.id} className='mb-0 ml-4 list-disc'>
-                <div className='relative -left-2'>
-                  <h3 className='text-s font-semibold'>{instance.company}</h3>
-                  <p className='text-sm text-gray-700'>
-                    <span className='font-medium'>{instance.role}</span>{' '}
-                    <span className='font-bold'>
-                      {instance.startYear} – {instance.endYear}
-                    </span>
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <ExperienceComp type={storedCareer} isEducation={false} />
         </section>
       </main>
     </div>
@@ -178,10 +147,36 @@ function SectionTitle({ title }) {
 // Creates lis of skills in cv field
 function SkillList({ skills }) {
   return (
-    <ul className='list-disc ml-3 mt-0 text-[12px]'>
+    <ul className='list-disc ml-5 mt-0 text-[1rem]'>
       {skills.map((skill) => (
         <li key={skill}>
           <span className='relative -left-2'>{skill}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// Component for education list and job list
+function ExperienceComp({ type, isEducation = true }) {
+  return (
+    <ul>
+      {type.map((instance) => (
+        <li key={instance.id} className='mb-0 ml-4 list-disc'>
+          <div className='relative -left-2'>
+            <h3 className='text-s font-semibold'>
+              {isEducation ? instance.academy : instance.company}
+            </h3>
+            <p className='text-sm text-gray-700'>
+              <span className='font-medium'>
+                {isEducation ? instance.degree : instance.role}
+              </span>{' '}
+              {isEducation ? '(' + instance.field + ')' : ''}{' '}
+              <span className='font-bold text-[1rem]'>
+                {instance.startYear} – {instance.endYear}
+              </span>
+            </p>
+          </div>
         </li>
       ))}
     </ul>

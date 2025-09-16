@@ -234,7 +234,7 @@ function EducationSelect({ onStateChange }) {
   );
 }
 
-function CareerInputComponent() {
+function CareerInputComponent({ onStateChange }) {
   return (
     <>
       <label htmlFor='role'>

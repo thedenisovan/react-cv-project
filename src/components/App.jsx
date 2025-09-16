@@ -215,25 +215,11 @@ export default function App() {
     <div className='h-full max-w-[1100px] flex justify-center m-auto flex-col lg:flex-row'>
       <div className='flex flex-col justify-center items-center'>
         {returnCorrectPage()}
-        <div className='flex flex-row justify-around w-[100%]'>
-          <button
-            disabled={index < 1}
-            className='bg-gray-500 text-amber-50 rounded-xl w-[5rem] disabled:bg-amber-500'
-            onClick={previousPage}
-          >
-            Previous
-          </button>
-          <button
-            disabled={
-              (window.innerWidth > 1023 && index > 1) ||
-              (window.innerWidth < 1023 && index > 2)
-            }
-            className='bg-gray-500 text-amber-50 rounded-xl w-[5rem] disabled:bg-amber-500'
-            onClick={nextPage}
-          >
-            Next
-          </button>
-        </div>
+        <ButtonComponent
+          index={index}
+          previousPage={previousPage}
+          nextPage={nextPage}
+        />
       </div>
       <CvField
         index={index}
@@ -249,6 +235,46 @@ export default function App() {
         education={education}
         storedCareer={storedCareer}
       />
+      <ButtonComponent
+        index={index}
+        previousPage={previousPage}
+        nextPage={nextPage}
+        desktopBtn={false}
+      />
+    </div>
+  );
+}
+
+function ButtonComponent({ index, previousPage, nextPage, desktopBtn = true }) {
+  return (
+    <div
+      className={
+        desktopBtn
+          ? `${
+              index === 3 ? 'hidden' : ''
+            } flex flex-row justify-around w-[100%]`
+          : `${
+              index === 3 ? '' : 'hidden'
+            } flex flex-row justify-around w-[100%]`
+      }
+    >
+      <button
+        disabled={index < 1}
+        className='bg-gray-500 text-amber-50 rounded-xl w-[5rem] disabled:bg-amber-500'
+        onClick={previousPage}
+      >
+        Previous
+      </button>
+      <button
+        disabled={
+          (window.innerWidth > 1023 && index > 1) ||
+          (window.innerWidth < 1023 && index === 3)
+        }
+        className='bg-gray-500 text-amber-50 rounded-xl w-[5rem] disabled:bg-amber-500'
+        onClick={nextPage}
+      >
+        Next
+      </button>
     </div>
   );
 }
