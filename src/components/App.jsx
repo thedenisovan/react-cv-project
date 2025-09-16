@@ -26,7 +26,24 @@ export default function App() {
     startYear: '',
     endYear: '',
   });
-  const [education, setEducation] = useState([]);
+  const [education, setEducation] = useState([
+    {
+      id: self.crypto.randomUUID(),
+      academy: 'Chicago academy',
+      degree: 'High School',
+      field: 'High School Diploma - Sports',
+      startYear: '1998',
+      endYear: '2003',
+    },
+    {
+      id: self.crypto.randomUUID(),
+      academy: 'Los angeles University',
+      degree: 'Bachelor',
+      field: 'Mathematics',
+      startYear: '2003',
+      endYear: '2008',
+    },
+  ]);
 
   // Sets state value on input change
   function onStateChange(section, field, value) {
