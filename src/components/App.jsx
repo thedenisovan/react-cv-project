@@ -223,11 +223,11 @@ export default function App() {
 
   return (
     <div
-      className={`m-auto md:w-[70vw] lg:max-w-[1000px] flex  ${
+      className={`md:w-[70vw] lg:max-w-[1000px] flex  ${
         index > 2 ? 'flex-col' : 'flex-row'
       }`}
     >
-      <div className='flex flex-col justify-center align-center mb-[10rem] bg-gray-50 rounded-lg shadow-md space-y-3'>
+      <div className='flex flex-col justify-center align-center bg-gray-50 rounded-lg shadow-md space-y-3'>
         {returnCorrectPage()}
         <ButtonComponent
           index={index}
