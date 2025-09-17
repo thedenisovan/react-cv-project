@@ -227,7 +227,7 @@ export default function App() {
         index > 2 ? 'flex-col' : 'flex-row'
       }`}
     >
-      <div className='flex flex-col justify-center align-center bg-gray-50 rounded-lg shadow-md space-y-3'>
+      <div className='mt-[.5rem] px-5 flex flex-col justify-center align-center bg-gray-100 rounded-lg shadow-md space-y-3'>
         {returnCorrectPage()}
         <ButtonComponent
           index={index}

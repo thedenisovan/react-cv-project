@@ -22,7 +22,7 @@ export default function CvField({
     <div
       className={`${
         index === 3 ? 'block' : 'hidden' // If user is on small device and reaches last page display cv field
-      } font-[Gill Sans] max-w-xl w-full aspect-[210/297] border-1 m-auto mt-[2rem] lg:block`}
+      } font-[Gill Sans] max-w-xl w-full aspect-[210/297] border-1 m-auto mt-[.5rem] lg:block`}
     >
       <CvHeader
         name={name}

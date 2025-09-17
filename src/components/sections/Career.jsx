@@ -25,7 +25,7 @@ export default function Career({
           resetExperience={resetExperience}
           academy={academy}
         />
-        <ul className='flex flex-col gap-3'>
+        <ul className='flex flex-col gap-1 mt-1 mb-5'>
           {education.map((instance) => (
             <li
               key={instance.id}
@@ -54,7 +54,7 @@ export default function Career({
           isEducation={false}
           storeCareer={storeCareer}
         />
-        <ul className='flex flex-col gap-3'>
+        <ul className='flex flex-col gap-1 mt-1 mb-1'>
           {storedCareer.map((instance) => (
             <li
               key={instance.id}
@@ -91,7 +91,7 @@ function Experience({
   storeCareer,
 }) {
   return (
-    <form className='p-4 bg-gray-50 rounded-lg shadow-md space-y-3'>
+    <form className='px-4 bg-gray-50 rounded-lg shadow-md space-y-3'>
       <h2 className='text-2xl font-medium mt-2 -mb-1'>{title}</h2>
       <label htmlFor={type}>{label}</label>
       <div>
