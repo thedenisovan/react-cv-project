@@ -3,7 +3,9 @@ import Container from './SectionContainer';
 export default function PersonalInfo({ onStateChange }) {
   return (
     <Container>
-      <h1 className='text-3xl font-medium'>Personal details</h1>
+      <h1 className='text-2xl md:text-3xl lg:text-4xl font-medium mt-[5-rem]'>
+        Personal details
+      </h1>
       <p className='text-1xl font-normal text-gray-700'>
         Personal details such as - name, job title and email are crucial for any
         employers resume.

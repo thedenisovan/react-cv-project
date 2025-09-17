@@ -13,13 +13,6 @@ export default function Career({
 }) {
   return (
     <Container>
-      <h1 className='text-3xl font-medium'>
-        Employee education and related experience
-      </h1>
-      <p className='text-1xl font-normal text-gray-700'>
-        Here you can provide information about your formal education, work
-        experience, and skills.
-      </p>
       <Experience
         title='Education'
         label='Academy'
@@ -31,15 +24,20 @@ export default function Career({
         resetExperience={resetExperience}
         academy={academy}
       />
-      <ul>
+      <ul className='flex flex-col gap-3'>
         {education.map((instance) => (
-          <li key={instance.id}>
-            {instance.academy}
+          <li
+            key={instance.id}
+            className='flex items-center justify-between border rounded-lg px-4 py-2 shadow-sm bg-white'
+          >
+            <span className='font-medium text-gray-700'>
+              {instance.academy}
+            </span>
             <button
-              className='border-1'
+              className='px-3 py-1 bg-red-500 text-white text-sm font-semibold rounded hover:bg-red-600 transition'
               onClick={() => deleteEntry('education', instance.id)}
             >
-              Delete
+              ✕
             </button>
           </li>
         ))}
@@ -55,15 +53,20 @@ export default function Career({
         isEducation={false}
         storeCareer={storeCareer}
       />
-      <ul>
+      <ul className='flex flex-col gap-3'>
         {storedCareer.map((instance) => (
-          <li key={instance.id}>
-            {instance.company}
+          <li
+            key={instance.id}
+            className='flex items-center justify-between border rounded-lg px-4 py-2 shadow-sm bg-white'
+          >
+            <span className='font-medium text-gray-700'>
+              {instance.company}
+            </span>
             <button
-              className='border-1'
+              className='px-3 py-1 bg-red-500 text-white text-sm font-semibold rounded hover:bg-red-600 transition'
               onClick={() => deleteEntry('storedCareer', instance.id)}
             >
-              Delete
+              ✕
             </button>
           </li>
         ))}
@@ -86,13 +89,13 @@ function Experience({
   storeCareer,
 }) {
   return (
-    <form>
+    <form className='mt-4 p-4 bg-gray-50 rounded-lg shadow-md space-y-3'>
       <h2 className='text-2xl font-medium mt-2 -mb-1'>{title}</h2>
       <label htmlFor={type}>{label}</label>
       <div>
         <input
           autoComplete='organization'
-          className='border-1'
+          className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none'
           id={isEducation ? 'academy' : 'company'}
           placeholder={placeholder}
           value={academy}
@@ -127,7 +130,7 @@ function Experience({
         }
         <button
           type='button'
-          className='w-25 border-1'
+          className='mt-2 px-4 py-2 bg-emerald-600 text-white font-semibold rounded-md hover:bg-emerald-700 transition'
           onClick={isEducation ? storeEducation : storeCareer}
         >
           Add
@@ -152,7 +155,7 @@ function LengthOfActivity({
 
   return (
     <select
-      className='border-1'
+      className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none'
       id={id}
       defaultValue=''
       onChange={(e) =>
@@ -211,7 +214,7 @@ function EducationSelect({ onStateChange }) {
   return (
     <div>
       <select
-        className='border-1'
+        className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none'
         id='degree'
         defaultValue=''
         onChange={(e) =>
@@ -228,7 +231,7 @@ function EducationSelect({ onStateChange }) {
         ))}
       </select>
       <select
-        className='border-1'
+        className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none'
         id='field'
         defaultValue=''
         onChange={(e) =>
@@ -257,7 +260,7 @@ function CareerInputComponent({ onStateChange }) {
       <input
         type='text'
         id='role'
-        className='border'
+        className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:outline-none'
         onChange={(e) => onStateChange('career', e.target.id, e.target.value)}
       />
     </>

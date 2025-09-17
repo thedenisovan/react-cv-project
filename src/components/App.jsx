@@ -223,7 +223,7 @@ export default function App() {
 
   return (
     <div
-      className={`h-full bg-white max-w-[1100px] flex justify-center p-[2rem] ${
+      className={`m-auto md:w-[70vw] lg:max-w-[1100px] flex justify-center ${
         index > 2 ? 'flex-col' : 'flex-row'
       }`}
     >
@@ -274,13 +274,17 @@ function ButtonComponent({ index, previousPage, nextPage, desktopBtn = true }) {
     >
       <button
         disabled={index < 1}
-        className='bg-gray-400 rounded-[50px]'
+        className='bg-gray-400 rounded-[50px] w-10 h-10 hover:bg-gray-500 hover:cursor-pointer disabled:cursor-not-allowed disabled:hover:bg-gray-400'
         onClick={previousPage}
       >
-        <img className='h-15' src={prevSvg} />
+        <img className='h-8 m-auto' src={prevSvg} />
       </button>
-      <button className='bg-gray-400 rounded-[50px]' onClick={nextPage}>
-        <img className='h-15' src={nextSvg} />
+      <button
+        disabled={index > 2}
+        className='bg-gray-400 rounded-[50px] w-10 h-10 hover:bg-gray-500 hover:cursor-pointer disabled:cursor-not-allowed disabled:hover:bg-gray-400'
+        onClick={nextPage}
+      >
+        <img className='h-8 m-auto' src={nextSvg} />
       </button>
     </div>
   );
