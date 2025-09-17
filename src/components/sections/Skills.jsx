@@ -57,7 +57,7 @@ export default function Skills({
           value={skillInput}
         />
         <button
-          className='border-1 ml-2 w-10 hover:cursor-pointer rounded-[50px]'
+          className='mt-2 px-4 py-2 bg-emerald-600 text-white font-semibold rounded-md hover:bg-emerald-700 transition'
           onClick={() => {
             addSkill();
           }}
